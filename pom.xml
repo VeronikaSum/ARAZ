@@ -18,8 +18,9 @@
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
     <jakartaee.api.version>8.0.0</jakartaee.api.version>
-    <h2.database.version>2.1.210</h2.database.version>
+    <h2.database.version>1.4.199</h2.database.version>
     <lombok.version>1.18.10</lombok.version>
+    <java.persistence.api.version>2.2</java.persistence.api.version>
   </properties>
 
   <dependencies>
@@ -39,6 +40,11 @@
       <artifactId>lombok</artifactId>
       <version>${lombok.version}</version>
       <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.persistence</groupId>
+      <artifactId>javax.persistence-api</artifactId>
+      <version>${java.persistence.api.version}</version>
     </dependency>
   </dependencies>
 
