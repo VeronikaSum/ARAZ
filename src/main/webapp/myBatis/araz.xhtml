@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<h:head/>
+<h:body>
+    <h2>Welcome to AZAR</h2>
+    <h:link outcome="/index" value="Go back to ORM/JPA implementation"/>
+    <div>
+        <h3>Available categories</h3>
+        <ol>
+            <ui:repeat value="#{myBatisCategoryController.availableCategories}" var="item">
+                <li>
+                    <h:outputLabel>ID: </h:outputLabel>
+                    <h:outputLabel value="${item.id}"/>
+                    <h:outputLabel> Name: </h:outputLabel>
+                    <h:outputLabel value="${item.name}"/>
+                </li>
+            </ui:repeat>
+        </ol>
+    </div>
+
+    <div>
+        <h:form id="category-form">
+            <h:panelGrid>
+                <h:outputLabel for="category_name">Category name</h:outputLabel>
+                <h:inputText id="category_name" value="${myBatisCategoryController.categoryToAdd.name}"/>
+                <h:commandButton id="add-button" value="Add" action="#{myBatisCategoryController.addNewCategory}"/>
+            </h:panelGrid>
+        </h:form>
+    </div>
+
+    <div>
+        <h:form id="category-delete-form">
+            <h:panelGrid>
+                <h:outputLabel>Category id:</h:outputLabel>
+                <h:inputText value="${myBatisCategoryController.categoryToDeleteId}"/>
+                <h:commandButton value="edit" action="#{myBatisCategoryController.deleteCategory}"/>
+            </h:panelGrid>
+        </h:form>
+    </div>
+</h:body>
+</html>
