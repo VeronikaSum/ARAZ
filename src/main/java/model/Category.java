@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +17,14 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
+@NamedQueries({
+        @NamedQuery(name = "Category.findALl", query = "select i from Category as i"),
+        @NamedQuery(name = "Category.getById", query = "select i from Category as i where i.id = :id")
+})
 public class Category {
+    public Category(String name) {
+        this.name = name;
+    }
 
     @Id
     @Column(name = "ID", nullable = false)

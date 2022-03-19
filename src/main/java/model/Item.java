@@ -31,6 +31,21 @@ public class Item {
         this.price = price;
     }
 
+    public Item(String name, int quantity, double price, Category category) {
+        this.name = name;
+        this.quantity = quantity;
+        this.price = price;
+        this.category = category;
+    }
+
+    public Item(String name, int quantity, double price, Category category, List<Shop> shops) {
+        this.name = name;
+        this.quantity = quantity;
+        this.price = price;
+        this.category = category;
+        this.shops = shops;
+    }
+
     @Column(nullable = false)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,5 +64,6 @@ public class Item {
     @ManyToMany
     @JoinTable(name="shops", joinColumns = @JoinColumn(name = "item_id"),
     inverseJoinColumns = @JoinColumn(name = "shop_id"))
+    @Column(name="SHOP_ID")
     private List<Shop> shops;
 }
