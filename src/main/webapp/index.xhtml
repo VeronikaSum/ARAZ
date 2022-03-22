@@ -13,20 +13,20 @@
         <ol>
             <ui:repeat value="${mainPageController.items}" var="item">
                 <li>
-                        <h:outputLabel>ID: </h:outputLabel>
-                        <h:outputLabel value="${item.id}"/>
-                        <h:outputLabel> Name: </h:outputLabel>
-                        <h:outputLabel value="${item.name}"/>
-                        <h:outputLabel> Price: </h:outputLabel>
-                        <h:outputLabel value="${item.price}"/>
-                        <h:outputLabel> Quantity: </h:outputLabel>
-                        <h:outputLabel value="${item.quantity}"/>
-                        <h:outputLabel> Category: </h:outputLabel>
-                        <h:outputLabel value="${item.category.name}"/>
-                        <h:outputLabel> Shops: </h:outputLabel>
-                        <ui:repeat value="${item.shops}" var="item">
+                    <h:outputLabel>ID: </h:outputLabel>
+                    <h:outputLabel value="${item.id}"/>
+                    <h:outputLabel> Name: </h:outputLabel>
+                    <h:outputLabel value="${item.name}"/>
+                    <h:outputLabel> Price: </h:outputLabel>
+                    <h:outputLabel value="${item.price}"/>
+                    <h:outputLabel> Quantity: </h:outputLabel>
+                    <h:outputLabel value="${item.quantity}"/>
+                    <h:outputLabel> Category: </h:outputLabel>
+                    <h:outputLabel value="${item.category.name}"/>
+                    <h:outputLabel> Shops: </h:outputLabel>
+                    <ui:repeat value="${item.shops}" var="item">
                         <h:outputLabel value="${item.name} "/>
-                        </ui:repeat>
+                    </ui:repeat>
                 </li>
             </ui:repeat>
         </ol>
@@ -35,18 +35,18 @@
     <div>
         <h3>Available categories</h3>
         <ol>
-        <ui:repeat value="#{categoryController.availableCategories}" var="item">
-        <li>
-            <h:outputLabel>ID: </h:outputLabel>
-            <h:outputLabel value="${item.id}"/>
-            <h:outputLabel> Name: </h:outputLabel>
-            <h:outputLabel value="${item.name}"/>
-            <h:outputLabel> Items: </h:outputLabel>
-            <ui:repeat value="${item.items}" var="item">
-                <h:outputLabel value="${item.name} "/>
+            <ui:repeat value="#{categoryController.availableCategories}" var="item">
+                <li>
+                    <h:outputLabel>ID: </h:outputLabel>
+                    <h:outputLabel value="${item.id}"/>
+                    <h:outputLabel> Name: </h:outputLabel>
+                    <h:outputLabel value="${item.name}"/>
+                    <h:outputLabel> Items: </h:outputLabel>
+                    <ui:repeat value="${item.items}" var="item">
+                        <h:outputLabel value="${item.name} "/>
+                    </ui:repeat>
+                </li>
             </ui:repeat>
-        </li>
-        </ui:repeat>
         </ol>
     </div>
 
@@ -73,6 +73,7 @@
     </div>
 
     <div>
+        <h4>Add category</h4>
         <h:form id="category-form">
             <h:panelGrid>
                 <h:outputLabel for="category_name">Category name</h:outputLabel>
@@ -83,14 +84,29 @@
     </div>
 
     <div>
+        <h:form id="category-edit-form">
+            <h4>Edit category</h4>
+            <h:panelGrid>
+                <h:outputLabel>Category id:</h:outputLabel>
+                <h:inputText value="${categoryController.categoryToEdit.id}"/>
+                <h:outputLabel>Category name:</h:outputLabel>
+                <h:inputText value="${categoryController.categoryToEdit.name}"/>
+                <h:commandButton value="edit" action="#{categoryController.updateCategory}"/>
+            </h:panelGrid>
+        </h:form>
+    </div>
+
+    <div>
         <h:form id="shop-form">
+            <h4>Add shop</h4>
             <h:panelGrid>
                 <h:outputLabel for="shop_name">Shop name</h:outputLabel>
                 <h:inputText id="shop_name" value="${shopController.shop.name}"/>
                 <h:outputLabel for="shop_address">Shop address</h:outputLabel>
                 <h:inputText id="shop_address" value="${shopController.shop.address}"/>
                 <h:outputLabel for="shop_number">Shop phone number</h:outputLabel>
-                <h:inputText id="shop_number" value="${shopController.shop.number}" converterMessage="Please enter digits only."/>
+                <h:inputText id="shop_number" value="${shopController.shop.number}"
+                             converterMessage="Please enter digits only."/>
                 <h:commandButton id="add-shop-button" value="Add" action="#{shopController.createNewShop}"/>
             </h:panelGrid>
         </h:form>
@@ -98,6 +114,7 @@
 
     <div>
         <h:form id="item-form">
+            <h4>Add item</h4>
             <h:panelGrid>
                 <h:outputLabel for="name">Item name</h:outputLabel>
                 <h:inputText id="name" value="${itemController.item.name}"/>
@@ -118,12 +135,11 @@
 
                 <h:selectManyListbox id="shops" value="#{itemController.shopIds}">
                     <f:selectItems value="#{shopController.allShops}" var="s"
-                        itemLabel="#{s.name}" itemValue="#{s.id}"/>
+                                   itemLabel="#{s.name}" itemValue="#{s.id}"/>
                 </h:selectManyListbox>
                 <h:commandButton id="submit-button" value="Submit" action="#{itemController.createItem}"/>
             </h:panelGrid>
         </h:form>
-
     </div>
 </h:body>
 </html>

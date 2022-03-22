@@ -27,4 +27,8 @@ public class CategoryFacadeImpl {
         namedQuery.setParameter("id", id);
         return namedQuery.getSingleResult();
     }
+
+    public void updateCategory(Category categoryToEdit) {
+        this.em.merge(categoryToEdit);
+    }
 }

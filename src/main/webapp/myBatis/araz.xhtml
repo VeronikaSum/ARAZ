@@ -23,6 +23,7 @@
     </div>
 
     <div>
+        <h4>Add category</h4>
         <h:form id="category-form">
             <h:panelGrid>
                 <h:outputLabel for="category_name">Category name</h:outputLabel>
@@ -33,11 +34,12 @@
     </div>
 
     <div>
+        <h4>Delete category</h4>
         <h:form id="category-delete-form">
             <h:panelGrid>
                 <h:outputLabel>Category id:</h:outputLabel>
                 <h:inputText value="${myBatisCategoryController.categoryToDeleteId}"/>
-                <h:commandButton value="edit" action="#{myBatisCategoryController.deleteCategory}"/>
+                <h:commandButton value="delete" action="#{myBatisCategoryController.deleteCategory}"/>
             </h:panelGrid>
         </h:form>
     </div>

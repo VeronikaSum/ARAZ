@@ -13,14 +13,15 @@ import model.Category;
 
 @ViewScoped
 @Named
+@Getter @Setter
 public class CategoryController implements Serializable {
     private static final long serialVersionUID = 7494079547177391842L;
 
     @Inject
     private CategoryFacadeImpl categoryFacade;
 
-    @Setter @Getter
     private Category category = new Category();
+    private Category categoryToEdit = new Category();
 
     @Transactional
     public String createNewCategory() {
@@ -32,6 +33,12 @@ public class CategoryController implements Serializable {
     }
     public List<Category> getAvailableCategories() {
         return categoryFacade.getAllCategories();
+    }
+
+    @Transactional
+    public String updateCategory() {
+        categoryFacade.updateCategory(categoryToEdit);
+        return "index?faces-redirect=true";
     }
 
 }
