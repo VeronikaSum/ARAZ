@@ -1,8 +1,11 @@
 package controller;
 
 import facade.impl.CategoryFacadeImpl;
+import interceptor.Logged;
 import java.io.Serializable;
 import java.util.List;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -14,6 +17,7 @@ import model.Category;
 @ViewScoped
 @Named
 @Getter @Setter
+@Logged
 public class CategoryController implements Serializable {
     private static final long serialVersionUID = 7494079547177391842L;
 
@@ -36,6 +40,7 @@ public class CategoryController implements Serializable {
     }
 
     @Transactional
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public String updateCategory() {
         categoryFacade.updateCategory(categoryToEdit);
         return "index?faces-redirect=true";

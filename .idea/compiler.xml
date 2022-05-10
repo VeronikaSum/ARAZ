@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ARAZ" />
+        <module name="ARAZ (1)" />
       </profile>
     </annotationProcessing>
   </component>

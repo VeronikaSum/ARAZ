@@ -4,6 +4,7 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.LockModeType;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import model.Category;
@@ -29,6 +30,8 @@ public class CategoryFacadeImpl {
     }
 
     public void updateCategory(Category categoryToEdit) {
+        Category categoryById = getCategoryById(categoryToEdit.getId());
+        categoryToEdit.setVersion(categoryById.getVersion());
         this.em.merge(categoryToEdit);
     }
 }

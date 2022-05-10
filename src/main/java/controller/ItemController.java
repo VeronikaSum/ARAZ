@@ -2,6 +2,7 @@ package controller;
 
 import facade.impl.CategoryFacadeImpl;
 import facade.impl.ItemFacadeImpl;
+import interceptor.Logged;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.view.ViewScoped;
@@ -16,6 +17,7 @@ import model.Item;
 @Named
 @Getter
 @Setter
+@Logged
 public class ItemController implements Serializable {
     private static final long serialVersionUID = 5550441667169227679L;
 
