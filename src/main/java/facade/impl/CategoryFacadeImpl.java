@@ -11,7 +11,7 @@ import model.Category;
 import model.Item;
 
 @ApplicationScoped
-public class CategoryFacadeImpl {
+public class CategoryFacadeImpl implements facade.impl.Category {
     @Inject
     private EntityManager em;
 
