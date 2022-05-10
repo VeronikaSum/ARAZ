@@ -8,6 +8,11 @@
 <h:body>
     <h2>Welcome to AZAR</h2>
     <h:link outcome="myBatis/araz" value="MyBatis implementation"/>
+
+    <h:form>
+        <h:outputText value="#{proneNumberGenerator.phoneNumberGeneratorStatus}" />
+        <h:commandButton value="Generate phone number?" disabled="#{proneNumberGenerator.phoneNumberGeneratorRunning}" action="#{proneNumberGenerator.generatePhoneNumber}" />
+    </h:form>
     <div>
         <h3>Available items</h3>
         <ol>
@@ -92,6 +97,7 @@
                 <h:outputLabel>Category name:</h:outputLabel>
                 <h:inputText value="${categoryController.categoryToEdit.name}"/>
                 <h:commandButton value="edit" action="#{categoryController.updateCategory}"/>
+                <h:outputText value="Value was already modified by other user. If you want to override it - try again" rendered="#{param['error'] == 'optimistic-lock-exception'}" />
             </h:panelGrid>
         </h:form>
     </div>

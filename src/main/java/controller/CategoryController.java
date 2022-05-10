@@ -9,6 +9,7 @@ import javax.ejb.TransactionAttributeType;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.OptimisticLockException;
 import javax.transaction.Transactional;
 import lombok.Getter;
 import lombok.Setter;
@@ -40,10 +41,15 @@ public class CategoryController implements Serializable {
     }
 
     @Transactional
-    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public String updateCategory() {
-        categoryFacade.updateCategory(categoryToEdit);
-        return "index?faces-redirect=true";
+        String redirect = "index?faces-redirect=true";
+        try {
+            categoryFacade.updateCategory(categoryToEdit);
+        } catch (OptimisticLockException e) {
+            e.printStackTrace();
+            return redirect + "&error=optimistic-lock-exception";
+        }
+        return redirect;
     }
 
 }

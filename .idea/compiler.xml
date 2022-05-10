@@ -8,8 +8,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ARAZ" />
-        <module name="ARAZ (1)" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ARAZ (1)" target="1.7" />
+    </bytecodeTargetLevel>
   </component>
 </project>
