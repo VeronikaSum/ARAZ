@@ -9,6 +9,8 @@
     <h2>Welcome to AZAR</h2>
     <h:link outcome="myBatis/araz" value="MyBatis implementation"/>
 
+    <h:link outcome="categories" value="Categories"/>
+
     <h:form>
         <h:outputText value="#{proneNumberGenerator.phoneNumberGeneratorStatus}" />
         <h:commandButton value="Generate phone number?" disabled="#{proneNumberGenerator.phoneNumberGeneratorRunning}" action="#{proneNumberGenerator.generatePhoneNumber}" />

@@ -57,6 +57,7 @@ public class CategoryController {
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Transactional
+    //to avoid OptimisticLokException error handling methods should use @Transactional(REQUIRES_NEW)
     public Response update(
             @PathParam("id") final Long categoryId,
             CategoryDto categoryDto) {
@@ -66,9 +67,10 @@ public class CategoryController {
                 return Response.status(Response.Status.NOT_FOUND).build();
             }
             existingCategory.setName(categoryDto.getName());
+            Thread.sleep(2000);
             categoryFacade.updateCategory(existingCategory);
             return Response.ok().build();
-        } catch (OptimisticLockException e) {
+        } catch (OptimisticLockException | InterruptedException e) {
             return Response.status(Response.Status.CONFLICT).build();
         }
     }

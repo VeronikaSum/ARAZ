@@ -1,19 +1,22 @@
 package facade.impl;
 
+import controller.ProneNumberGenerator;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Alternative;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import model.Shop;
 
-@Alternative //For example, you might want to create a full version of a bean and also a simpler version that you use only for certain kinds of testing.
+@Alternative
 @ApplicationScoped
-public class AlternativeShopFacade {
+public class AlternativeShopFacade extends ShopFacadeImpl {
     @Inject
     private EntityManager em;
+    @Inject
+    private ProneNumberGenerator proneNumberGenerator;
 
     public void addShop(Shop shop) {
-        this.em.persist(shop);
+        shop.setNumber(proneNumberGenerator.generatePhoneNumber());
+        em.persist(shop);
     }
-
 }

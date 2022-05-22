@@ -16,7 +16,6 @@ import model.Item;
 @Named
 @Getter
 @Setter
-@Logged
 public class MainPageController implements Serializable {
     private static final long serialVersionUID = 211464307920397540L;
 

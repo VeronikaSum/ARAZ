@@ -29,9 +29,9 @@ public class CategoryFacadeImpl implements facade.impl.Category {
         return namedQuery.getSingleResult();
     }
 
+
+    //to avoid OptimisticLokException error handling methods should use @Transactional(REQUIRES_NEW)
     public void updateCategory(Category categoryToEdit) {
-        Category categoryById = getCategoryById(categoryToEdit.getId());
-        categoryToEdit.setVersion(categoryById.getVersion());
         this.em.merge(categoryToEdit);
     }
 }

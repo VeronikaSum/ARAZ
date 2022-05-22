@@ -18,12 +18,14 @@ import model.Category;
 @ViewScoped
 @Named
 @Getter @Setter
-@Logged
 public class CategoryController implements Serializable {
     private static final long serialVersionUID = 7494079547177391842L;
 
     @Inject
     private CategoryFacadeImpl categoryFacade;
+
+    @Inject
+    private ProneNumberGenerator proneNumberGenerator;
 
     private Category category = new Category();
     private Category categoryToEdit = new Category();
@@ -41,13 +43,17 @@ public class CategoryController implements Serializable {
     }
 
     @Transactional
+    //to avoid OptimisticLokException error handling methods should use @Transactional(REQUIRES_NEW)
     public String updateCategory() {
-        String redirect = "index?faces-redirect=true";
+        String redirect = "categories";
         try {
-            categoryFacade.updateCategory(categoryToEdit);
-        } catch (OptimisticLockException e) {
+            Category categoryById = categoryFacade.getCategoryById(categoryToEdit.getId());
+            categoryById.setName(categoryToEdit.getName());
+            Thread.sleep(5000);
+            categoryFacade.updateCategory(categoryById);
+        } catch (OptimisticLockException | InterruptedException e) {
             e.printStackTrace();
-            return redirect + "&error=optimistic-lock-exception";
+            return "categories?faces-redirect=true&error=optimistic-lock-exception";
         }
         return redirect;
     }

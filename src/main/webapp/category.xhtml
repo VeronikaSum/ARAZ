@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head/>
+<h:body>
+    <div>
+<!--        <h3>Category</h3>-->
+<!--        <h3>Name: #{detailedCategoryController.category.id}</h3>-->
+<!--        <h3>Name: #{detailedCategoryController.category.name}</h3>-->
+        <h:form id="category-edit-form">
+            <h3>Name: #{detailedCategoryController.category.name}</h3>
+            <h4>Edit category</h4>
+            <h:panelGrid>
+        <h:outputLabel>Category name:</h:outputLabel>
+        <h:inputText value="${detailedCategoryController.name}"/>
+        <h:commandButton value="edit" action="#{detailedCategoryController.updateCategory}"/>
+        <h:outputText value="Value was already modified by other user. If you want to override it - try again" rendered="#{param['error'] == 'optimistic-lock-exception'}" />
+        </h:panelGrid>
+        </h:form>
+    </div>
+</h:body>
+</html>

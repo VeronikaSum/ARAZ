@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head/>
+<h:body>
+    <div>
+
+        <h3>Available categories</h3>
+        <ol>
+            <ui:repeat value="#{categoryController.availableCategories}" var="item">
+                <li>
+                    <li><h:link value="#{item.name}" outcome="category?categoryId=#{item.id}" /></li>
+
+                    <!--                    <h:outputLabel>ID: </h:outputLabel>-->
+<!--                    <h:outputLabel value="${item.id}"/>-->
+<!--                    <h:outputLabel> Name: </h:outputLabel>-->
+<!--                    <h:outputLabel value="${item.name}"/>-->
+<!--                    <h:outputLabel> Items: </h:outputLabel>-->
+<!--                    <ui:repeat value="${item.items}" var="item">-->
+<!--                        <h:outputLabel value="${item.name} "/>-->
+<!--                    </ui:repeat>-->
+                </li>
+            </ui:repeat>
+        </ol>
+
+        <h:form id="category-edit-form">
+            <h4>Edit category</h4>
+            <h:panelGrid>
+                <h:outputLabel>Category id:</h:outputLabel>
+                <h:inputText value="${categoryController.categoryToEdit.id}"/>
+                <h:outputLabel>Category name:</h:outputLabel>
+                <h:inputText value="${categoryController.categoryToEdit.name}"/>
+                <h:commandButton value="edit" action="#{categoryController.updateCategory}"/>
+                <h:outputText value="Value was already modified by other user. If you want to override it - try again" rendered="#{param['error'] == 'optimistic-lock-exception'}" />
+            </h:panelGrid>
+        </h:form>
+    </div>
+</h:body>
+</html>

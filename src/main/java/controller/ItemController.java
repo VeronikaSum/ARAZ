@@ -17,7 +17,6 @@ import model.Item;
 @Named
 @Getter
 @Setter
-@Logged
 public class ItemController implements Serializable {
     private static final long serialVersionUID = 5550441667169227679L;
 
